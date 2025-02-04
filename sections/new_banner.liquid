@@ -1,6 +1,59 @@
 {% schema %}
   {
-    "name": "Section name",
-    "settings": []
+    "name": "Gift Guide Banner",
+    "settings": [
+          {
+             "type": "image_picker",
+              "id": "image",
+              "label": "Background Image"
+          },
+
+          {
+             "type": "image_picker",
+              "id": "mobile_image",
+              "label": "Mobile Background Image"
+          },
+            
+          {
+             "type": "richtext",
+              "id": "title",
+              "label": "Title",
+               "default": "<p>The Gift Guide</p>"
+          }, 
+            
+          {
+             "type": "richtext",
+              "id": "subtitle",
+              "label": "Subtitle",
+               "default": "<p>Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</p>"
+          }, 
+
+          {
+             "type": "text",
+              "id": "button_text",
+              "label": "Button Text",
+               "default": "<p>SHOP NOW</p>"
+          }, 
+
+          {
+             "type": "url",
+              "id": "button_link",
+              "label": "Button Link",
+          }, 
+
+          {
+             "type": "richtext",
+              "id": "choose_gift_text",
+              "label": "Choose Gift Text",
+               "default": "<p>CHOOSE GIFT →</p>"
+          }, 
+
+         {
+             "type": "url",
+              "id": "choose_gift_link",
+              "label": "Choose Gift Link",
+          }, 
+      
+    ]
   }
 {% endschema %}
