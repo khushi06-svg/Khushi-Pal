@@ -101,10 +101,26 @@
     <p class="logo">{{ section.settings.top_bar_logo_text }}</p>
     <div>
 
-      
+   <!-- Mobile Dropdown Menu -->
+    <div class="mobile-menu" id="mobileMenu">  
+    <div class="close-button" onclick="toggleMenu()">x</div>  
+     <p>{{ section.settings.top_bar_text}}</p> 
+     <a href="{{ section.settings.choose_gift_link }}" class="choose-gift-button">
+       {{ section.settings.choose_gift_text }}
+     </a>
+    </div>
 
+    <!-- Banner for Desktop and Mobile -->
+      <div class="banner-content"
+           style="background-image: url({{ section.settings.image | img_url: 'master' }});
+                  background-size: contain;
+                  background-position: center;
+                  background-repeat: no-repeat;">
 
-
+      <div class="text-content-mobile">
+        <h2>{{ section.settings.title }}</h2>
+        <p>{{ section.settings.subtitle }}</p>
+      </div> 
 
   
   </div>
