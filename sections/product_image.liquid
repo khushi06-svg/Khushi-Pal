@@ -133,7 +133,38 @@
     </div>
     </div>
     </div>   
-        `;
+
+     <div>
+     <div>Color:</div>
+     <div class="color-variants">
+      ${colors.map(color => `
+        <div class ="color-radio">
+           <div class="colour" style=" width: 10px; border: 1px solid black; background-color: ${color};"> </div>
+           <input type="radio" id="color-${color}" name="color" value="${color}">
+           <label for="color-${color}">${color}</label>
+           </div>
+           `).join('')}
+           </div>
+           </div>
+
+           <div class="select_size" style="margin-top: 10px;">Size:</div>
+           <div class="dropdown-container">
+           <select id="size-selector">
+            <option value="default">Choose your size</option>
+            ${sizes.map(size => `
+              <option value="${size}">${size}</option>
+                        `).join('')}
+             </select>                                            
+             </div>
+             </div>
+             
+             </div>
+             <button class="add-to-cart" data-product-id="">ADD TO CART <span class="arrow"> ⟶ </span></button>
+             </div>
+             `;
+
+        modal.classList.add("show");
+        
          
 
       
