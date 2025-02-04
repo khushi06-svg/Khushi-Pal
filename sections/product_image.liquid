@@ -105,5 +105,38 @@
     width: 50%;
     max-width: 400px;
   }
-  
+
 </style>
+
+ <script>
+  document.addEventListerner("DOMContentLoaded" , function(){
+    let modal = document.getElementById("product-modal");
+    let modalBody = document.getElementById("modal-body");
+    let closeModal = doucment.querySelector(".close");
+
+    document.querySelectorAll(".quick-view-btn").forEach(button => {
+      button.addEventListener("click",function(){
+        let product = JSON.parse(this.getAttribute("data-product"));
+
+        let sizes = [...new set(product.variants.map(variant => variant.option1))];
+         let colors = [...new set(product.variants.map(variant => variant.option2))];
+
+        modalBody.innerHTML = '
+          <div class="popup" style="display: flex; margin-top: 30px;">
+           <div class="column">
+            <img src="${product.images[0] ? product.images[0] : 'https://via.placeholder.com/200'}" width="90%" height="80%" style="margin-top: 20px; object-fit: cover;"
+          </div>
+        <div class="column">
+          <h2 style="font-size: 16px;">${product.title}</h2>
+           <p style="font-size: 16px;"><strong>${product.price} ${product.currency}</strong></p>                    
+            <h3 style="font-size: 12px;">${product.title}</h3>
+    </div>
+    </div>
+    </div>';
+
+      
+        
+</script>
+
+
+
