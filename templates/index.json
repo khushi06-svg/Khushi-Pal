@@ -9,23 +9,55 @@
  */
 {
   "sections": {
-    "new_banner_KeR6zT": {
-      "type": "new_banner",
+    "image_banner_mnP3fr": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_cHL6Hq": {
+          "type": "heading",
+          "settings": {
+            "heading": "Image banner",
+            "heading_size": "h1"
+          }
+        },
+        "text_PP9JGL": {
+          "type": "text",
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "buttons_r9xJrQ": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_cHL6Hq",
+        "text_PP9JGL",
+        "buttons_r9xJrQ"
+      ],
       "settings": {
-        "image": "shopify://shop_images/Untitled_design.png",
-        "title": "<p>The Gift Guide</p>",
-        "subtitle": "<p>Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</p>",
-        "button_text": "SHOP NOW",
-        "button_link": "",
-        "choose_gift_text": "<p>CHOOSE GIFT →</p>",
-        "choose_gift_link": "",
-        "tagline_text": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL",
-        "top_bar_logo_text": "<p>TISSO VISON</p>",
-        "top_bar_text": "<p>Find the ideal gift for your loved ones.</p>"
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
       }
     }
   },
   "order": [
-    "new_banner_KeR6zT"
+    "image_banner_mnP3fr"
   ]
 }
