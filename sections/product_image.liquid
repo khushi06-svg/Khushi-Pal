@@ -25,3 +25,16 @@
     ]
   }
 {% endschema %}
+
+
+
+<div class="product-grid">
+{% for product in section.settings.products limit: 6 %}
+  <div class="product-grid-item">
+    <img src="{{ product.images[0] | img_url: 'large' }}" alt ="{{ product.title }}">
+    <button class="quick-view-btn" data-product= '{{ product | json }}'>+</button>
+  </div>
+  {% endfor %}
+
+  
+</div>
