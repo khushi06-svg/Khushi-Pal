@@ -24,9 +24,24 @@
         "top_bar_logo_text": "<h2>TISSO VISON</h2>",
         "top_bar_text": "<p>Find the ideal gift for your loved ones.</p><p></p>"
       }
+    },
+    "product_image_E9qztf": {
+      "type": "product_image",
+      "settings": {
+        "section_title": "<p>Featured Products</p>",
+        "products": [
+          "black-leather-bag",
+          "blue-silk-tuxedo",
+          "chequered-red-shirt",
+          "classic-leather-jacket",
+          "classic-varsity-top",
+          "dark-denim-top"
+        ]
+      }
     }
   },
   "order": [
-    "new_banner_ean4ni"
+    "new_banner_ean4ni",
+    "product_image_E9qztf"
   ]
 }
