@@ -1,0 +1,385 @@
+{% schema %}
+{
+  "name": "Product Image Grid",
+  "settings": [
+
+     {
+      "type": "richtext",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "<p>Featured Products</p>"
+    },
+    
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Select Products",
+      "limit": 6
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Image Grid",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}
+
+<!-- Section Title -->
+<h2 class="product-section-title">{{ section.settings.section_title }}</h2>
+
+<!-- Product Grid -->
+<div class="product-grid">
+  {% for product in section.settings.products limit: 6 %}
+    <div class="product-grid-item">
+      <img src="{{ product.images[0] | img_url: 'large' }}" alt="{{ product.title }}">
+      <button class="quick-view-btn" data-product='{{ product | json }}'>+</button>
+    </div>
+  {% endfor %}
+</div>
+
+<!-- Quick View Modal -->
+<div id="product-modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div id="modal-body">Loading...</div>
+  </div>
+</div>
+
+<!-- Styles -->
+<style>
+
+  .product-section-title {
+    text-align: left;
+    padding-left: 20px;
+  }
+  .close{
+    float: right;
+    cursor: pointer;
+    font-size: 24px;
+  }
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  padding: 20px;
+}
+
+.product-grid-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-grid-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.quick-view-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  width: 50%;
+  max-width: 400px;
+  
+  
+}
+@media (max-width: 768px){
+
+.product-section-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .modal-content {
+  background-color: white;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+}
+  .product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  padding: 10px;
+}
+  .product-grid-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+  .colour{
+height: 38.5px;
+  
+}
+}
+  
+.modal.show {
+  display: flex;
+}
+
+  .column{
+    flex: 1;
+  }
+  .color-variants {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.color-radio {
+  display: flex;
+  align-items: center;
+  width: 50%
+}
+
+.color-radio input[type="radio"] {
+  display: none;
+}
+
+.color-radio label {
+  display: inline;
+  width: 100%;
+  cursor: pointer;
+  outline: black solid 1px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  
+}
+
+.color-radio input[type="radio"]:checked + label {
+  
+  background: black;
+  color: white;
+  /* Optional: Highlight the selected color */
+}
+
+ 
+ .add-to-cart{ 
+ width: 100%;
+    color: white;
+    background-color: black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 40px;
+ }
+.dropdown-container {
+            position: relative;
+            width: 100%; /* Adjust width of the dropdown */
+        }
+
+        /* Style for the select */
+        select {
+            width: 100%;
+            padding: 15px 30px 15px 10px; /* Add space for arrow */
+            font-size: 16px;
+            appearance: none; /* Hide default arrow */
+            -webkit-appearance: none; /* For Safari */
+            -moz-appearance: none; /* For Firefox */
+            border: 1px solid black;
+            border-radius: 0px;
+            background-color: white;
+            position: relative;
+            background-image: url('https://uxwing.com/wp-content/themes/uxwing/download/arrow-direction/arrow-down-icon.png'); /* Custom arrow */
+            background-repeat: no-repeat;
+            background-position: right 30px center; /* Position the arrow */
+            background-size: 14px;
+            padding-right: 30px; /* Make space for the arrow */
+            transition: background-image 0.1s ease; /* Smooth transition for arrow rotation */
+        }
+
+        /* When the select is focused (i.e., dropdown is open), rotate the arrow */
+        select:focus {
+            background-image: url('https://uxwing.com/wp-content/themes/uxwing/download/arrow-direction/arrow-up-icon.png'); /* Rotated arrow */
+        }
+
+        /* Custom Border to separate the text and the arrow */
+        .dropdown-container:before {
+            content: "";
+            position: absolute;
+            left: 80%;
+            bottom: 0;
+            width: 1px;
+            height: 100%;
+            background-color: black;
+            z-index: 1000; /* Left border color */
+        }
+  @media (min-width: 768px){
+.colour{
+height: 41px;
+  
+}}
+  
+</style>
+
+<!-- JavaScript -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  let modal = document.getElementById("product-modal");
+  let modalBody = document.getElementById("modal-body");
+  let closeModal = document.querySelector(".close");
+
+  document.querySelectorAll(".quick-view-btn").forEach(button => {
+    button.addEventListener("click", function() {
+      let product = JSON.parse(this.getAttribute("data-product"));
+
+      // Get unique size and color options
+      let sizes = [...new Set(product.variants.map(variant => variant.option1))]; // Sizes from option1
+      let colors = [...new Set(product.variants.map(variant => variant.option2))]; // Colors from option2
+
+      // Build modal content dynamically
+      modalBody.innerHTML = `
+        <div class="popup" style="display: flex; margin-top: 30px;">
+          <div class="column">
+            <img src="${product.images[0] ? product.images[0] : 'https://via.placeholder.com/200'}" width="90%" height="80%" style="margin-top: 20px; object-fit: cover;">
+          </div>
+          <div class="column">
+            <h2 style="font-size: 16px;">${product.title}</h2>
+            <p style="font-size: 16px; font-family: 'Jost';"><strong>${product.price} ${product.currency}</strong> </p>
+            <h3 style="font-size: 12px;">${product.description}</h3>
+            
+          </div>
+        </div>
+        <div>
+
+          <div>
+          <div>Color:</div>
+          <div class="color-variants">
+            ${colors.map(color => `
+              <div class="color-radio">
+                 <div class="colour" style="width: 10px; border: 1px solid black;  background-color: ${color};"> </div>
+                <input type="radio" id="color-${color}" name="color" value="${color}">
+                <label for="color-${color}" >${color}</label>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        
+          <div class="select_size" style="margin-top: 10px;">Size:</div> 
+          <div class="dropdown-container">
+          <select id="size-selector">
+            <option value="default">Choose your Size</option>
+            ${sizes.map(size => `
+              <option value="${size}">${size}</option>
+            `).join('')}
+          </select>
+          
+          </div>
+        </div>
+        
+        <div>
+          <button class="add-to-cart" data-product-id="">ADD TO CART <span class="arrow"> ⟶ </span></button>
+        </div>
+      `;
+
+      modal.classList.add("show"); // Show modal
+
+      let selectedSize = null;
+      let selectedColor = null;
+
+      // Event listener for size selection
+      document.getElementById("size-selector").addEventListener("change", function() {
+        selectedSize = this.value;
+        updateAddToCartButton();
+      });
+
+      // Event listener for color selection
+      document.querySelectorAll("input[name='color']").forEach(radio => {
+        radio.addEventListener("change", function() {
+          selectedColor = this.value;
+          updateAddToCartButton();
+        });
+      });
+
+      function updateAddToCartButton() {
+        if (selectedSize && selectedColor) {
+          let selectedVariant = product.variants.find(variant => 
+            variant.option1 === selectedSize && variant.option2 === selectedColor
+          );
+
+          if (selectedVariant) {
+            document.querySelector(".add-to-cart").setAttribute("data-product-id", selectedVariant.id);
+          }
+        }
+      }
+
+      // Add event listener for "Add to Cart"
+      document.querySelector(".add-to-cart").addEventListener("click", function() {
+        let selectedVariantId = this.getAttribute("data-product-id");
+        if (selectedVariantId) {
+          addToCart(selectedVariantId, selectedSize, selectedColor);
+        } else {
+          alert("Please select both size and color.");
+        }
+      });
+    });
+  });
+
+  // Function to close modal
+  closeModal.addEventListener("click", function() {
+    modal.classList.remove("show");
+  });
+
+  // Close modal if clicking outside the content
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.classList.remove("show");
+    }
+  };
+
+  // Add to cart function
+  function addToCart(variantId, selectedSize, selectedColor) {
+    let items = [{ id: variantId, quantity: 1 }];
+
+    // Check if selected product matches "M" and "Black" conditions
+    if (selectedSize === "M" && selectedColor === "Black") {
+      items.push({ id: "42811020705907", quantity: 1 }); // Additional product
+    }
+
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Added to cart:", data);
+      window.location.reload(); // Refresh cart display
+    })
+    .catch(error => console.error("Error adding to cart:", error));
+  }
+
+});
+
+</script>
