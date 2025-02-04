@@ -32,6 +32,13 @@
         "default": "SHOP NOW"
       },
       {
+  "type": "color",
+  "id": "button_bg_color",
+  "label": "Button Background Color",
+  "default": "#000000"  // Default black color
+    },
+
+      {
         "type": "url",
         "id": "button_link",
         "label": "Button Link",
@@ -231,7 +238,7 @@
   display: inline-block;
   padding: 10px 30px;
   text-decoration: none;
-  background-color: #000; /* Button background color */
+  background-color: {{ section.settings.button_bg_color }};; /* Button background color */
   color: #fff; /* Button text color */
   border-radius: 5px; /* Rounded corners */
   transition: background-color 0.3s ease; /* Smooth transition for hover effect */
@@ -314,7 +321,7 @@ background-color: #F5F5F5;
     display: inline-block;
     padding: 15px 30px;
     text-decoration: none;
-    background-color: #000; /* Button background color */
+    background-color: {{ section.settings.button_bg_color }};; /* Button background color */
     color: #fff; /* Button text color */
     border-radius: 5px; /* Rounded corners */
     transition: background-color 0.3s ease; /* Smooth transition for hover effect */
