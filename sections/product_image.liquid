@@ -121,8 +121,8 @@
         let sizes = [...new set(product.variants.map(variant => variant.option1))];
          let colors = [...new set(product.variants.map(variant => variant.option2))];
 
-        modalBody.innerHTML = '
-          <div class="popup" style="display: flex; margin-top: 30px;">
+        modalBody.innerHTML = `
+           <div class="popup" style="display: flex; margin-top: 30px;">
            <div class="column">
             <img src="${product.images[0] ? product.images[0] : 'https://via.placeholder.com/200'}" width="90%" height="80%" style="margin-top: 20px; object-fit: cover;"
           </div>
@@ -132,7 +132,9 @@
             <h3 style="font-size: 12px;">${product.title}</h3>
     </div>
     </div>
-    </div>';
+    </div>   
+        `;
+         
 
       
         
