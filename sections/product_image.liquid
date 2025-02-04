@@ -1,6 +1,27 @@
 {% schema %}
   {
-    "name": "Section name",
-    "settings": []
+    "name": "Product Image Grid",
+    "settings": [
+
+      {
+         "type": "richtext",
+         "id": "section_title",
+         "label": "Section Title",
+         "default": "<p>Featured Products</p>"
+      },
+
+       {
+         "type": "product_list",
+         "id": "products",
+         "label": "Select Products",
+         "limit": 6
+      },
+    ],
+    "presets": [
+      {
+      "name": "Product Image Grid",
+      "category": "Custom Sections;"
+      }
+    ]
   }
 {% endschema %}
