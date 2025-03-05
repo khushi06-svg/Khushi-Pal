@@ -361,7 +361,6 @@ document.addEventListener("DOMContentLoaded", function() {
   // Add to cart function
   function addToCart(variantId, selectedSize, selectedColor) {
     let items = [{ id: variantId, quantity: 1 }];
-
     // Check if selected product matches "M" and "Black" conditions
     if (selectedSize === "M" && selectedColor === "Black") {
       items.push({ id: "46120619671790", quantity: 1 }); // Additional product
